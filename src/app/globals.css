@@ -24,3 +24,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@theme {
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+
+  --color-gold: #b08d57;
+  --color-cream: #faf7f2;
+}
