@@ -1,14 +1,16 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
 export default function Header() {
     const [open, setOpen] = useState(false);
+    const { count } = useCart();
 
     const links = [
         { href: "/", label: "Naslovna" },
         { href: "/proizvodi", label: "Proizvodi" },
-        { href: "/kosarica", label: "Košarica" },
+        { href: "/kosarica", label: `Košarica${count > 0 ? ` (${count})` : ""}` },
     ];
 
     return (

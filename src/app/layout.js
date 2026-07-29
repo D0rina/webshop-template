@@ -2,6 +2,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { CartProvider } from "@/context/CartContext";
 
 const playfair = Playfair_Display({
   subsets: ["latin", "latin-ext"],
@@ -23,9 +24,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="hr">
       <body className={`${playfair.variable} ${inter.variable} font-sans bg-stone-50 text-stone-800`}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <CartProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );
