@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { formatPrice } from "@/lib/format";
 
 export default function ProductCard({ product }) {
     return (
@@ -14,7 +15,7 @@ export default function ProductCard({ product }) {
                 />
             </div>
             <h3 className="font-serif text-lg mt-3">{product.name}</h3>
-            <p className="text-gold font-medium">{product.price.toFixed(2)} €</p>
+            <p className="text-gold font-medium">{formatPrice(product.price)}</p>
         </Link>
     );
 }

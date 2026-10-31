@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import { site } from "@/config/site";
 
 const playfair = Playfair_Display({
   subsets: ["latin", "latin-ext"],
@@ -16,14 +17,17 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Naziv Trgovine",
-  description: "Ručno izrađeni proizvodi s ljubavlju.",
+  title: {
+    default: site.name,
+    template: `%s | ${site.name}`,
+  },
+  description: site.description,
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="hr">
-      <body className={`${playfair.variable} ${inter.variable} font-sans bg-stone-50 text-stone-800`}>
+      <body className={`${playfair.variable} ${inter.variable} font-sans bg-stone-50 text-stone-800 antialiased`}>
         <CartProvider>
           <Header />
           <main>{children}</main>

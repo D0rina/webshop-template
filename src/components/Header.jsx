@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { site } from "@/config/site";
 
 export default function Header() {
     const [open, setOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function Header() {
         <header className="border-b border-stone-200 bg-cream sticky top-0 z-50">
             <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
                 <Link href="/" className="font-serif text-2xl tracking-wide text-stone-800">
-                    Naziv Trgovine
+                    {site.name}
                 </Link>
 
                 <nav className="hidden md:flex gap-8 text-sm tracking-wide uppercase">

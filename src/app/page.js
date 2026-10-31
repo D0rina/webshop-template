@@ -1,16 +1,15 @@
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
+import { site } from "@/config/site";
 
 export default function Home() {
   return (
     <>
       <section className="max-w-6xl mx-auto px-6 py-20 text-center">
         <h1 className="font-serif text-4xl md:text-5xl text-stone-800">
-          Ručno izrađeno, s pažnjom
+          {site.tagline}
         </h1>
-        <p className="text-stone-500 mt-4 max-w-xl mx-auto">
-          Otkrijte kolekciju jedinstvenih komada izrađenih od prirodnih materijala.
-        </p>
+        <p className="text-stone-500 mt-4 max-w-xl mx-auto">{site.intro}</p>
       </section>
 
       <section className="max-w-6xl mx-auto px-6 pb-24">

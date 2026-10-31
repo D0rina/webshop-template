@@ -1,5 +1,6 @@
 "use client";
 import { useCart } from "@/context/CartContext";
+import { formatPrice } from "@/lib/format";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,7 +26,7 @@ export default function KosaricaPage() {
             <div className="flex flex-col gap-6">
                 {items.map((item) => (
                     <div key={item.slug} className="flex items-center gap-4 border-b border-stone-200 pb-6">
-                        <div className="w-20 h-20 bg-stone-100 rounded-lg overflow-hidden shrink-0">
+                        <Link href={`/proizvodi/${item.slug}`} className="w-20 h-20 bg-stone-100 rounded-lg overflow-hidden shrink-0">
                             <Image
                                 src={item.image}
                                 alt={item.name}
@@ -33,11 +34,11 @@ export default function KosaricaPage() {
                                 height={100}
                                 className="object-cover w-full h-full"
                             />
-                        </div>
+                        </Link>
 
                         <div className="flex-1">
                             <h3 className="font-serif text-lg">{item.name}</h3>
-                            <p className="text-gold">{item.price.toFixed(2)} €</p>
+                            <p className="text-gold">{formatPrice(item.price)}</p>
                         </div>
 
                         <div className="flex items-center gap-2">
@@ -48,6 +49,7 @@ export default function KosaricaPage() {
                                         : updateQty(item.slug, item.qty - 1)
                                 }
                                 className="w-8 h-8 border border-stone-300 rounded-full hover:bg-stone-100"
+                                aria-label="Smanji količinu"
                             >
                                 −
                             </button>
@@ -55,13 +57,14 @@ export default function KosaricaPage() {
                             <button
                                 onClick={() => updateQty(item.slug, item.qty + 1)}
                                 className="w-8 h-8 border border-stone-300 rounded-full hover:bg-stone-100"
+                                aria-label="Povećaj količinu"
                             >
                                 +
                             </button>
                         </div>
 
-                        <p className="w-20 text-right font-medium">
-                            {(item.price * item.qty).toFixed(2)} €
+                        <p className="w-24 text-right font-medium">
+                            {formatPrice(item.price * item.qty)}
                         </p>
 
                         <button
@@ -77,7 +80,7 @@ export default function KosaricaPage() {
 
             <div className="flex justify-between items-center mt-10 pt-6 border-t border-stone-300">
                 <span className="font-serif text-xl">Ukupno</span>
-                <span className="font-serif text-xl text-gold">{total.toFixed(2)} €</span>
+                <span className="font-serif text-xl text-gold">{formatPrice(total)}</span>
             </div>
 
             <button className="mt-8 w-full bg-stone-800 text-white py-3 rounded-full hover:bg-gold transition-colors">
