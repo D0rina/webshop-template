@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { products } from "@/data/products";
+import { products, getCategory } from "@/data/products";
 import { notFound } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/lib/format";
@@ -14,6 +14,7 @@ export default function ProductPage({ params }) {
     const [added, setAdded] = useState(false);
 
     if (!product) return notFound();
+    const category = getCategory(product.category);
 
     function handleAdd() {
         addToCart(product);
@@ -33,8 +34,11 @@ export default function ProductPage({ params }) {
                 />
             </div>
             <div>
-                <Link href="/proizvodi" className="text-sm text-stone-500 hover:text-gold">
-                    ← Svi proizvodi
+                <Link
+                    href={category ? `/proizvodi?kategorija=${category.slug}` : "/proizvodi"}
+                    className="text-sm text-stone-500 hover:text-gold"
+                >
+                    ← {category ? category.name : "Svi proizvodi"}
                 </Link>
                 <h1 className="font-serif text-3xl mt-4">{product.name}</h1>
                 <p className="text-gold text-xl mt-2">{formatPrice(product.price)}</p>
